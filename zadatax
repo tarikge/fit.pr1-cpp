@@ -1,0 +1,29 @@
+
+#include <iostream>
+#include <iomanip>
+int main() {
+	char znak;
+	int visina, sirina;
+
+	std::cout << "Unesite znak" << std::endl;
+	std::cin >> znak;
+
+	std::cout << "Unesite visinu lika" << std::endl;
+	std::cin >> visina;
+
+	for (int i = visina; i > 0; i--)
+	{
+
+		std::cout<< std::setw(visina-i) << " ";
+		for (int j = 1; j <i; j++)
+		{
+			std::cout << znak;
+		
+		}
+		
+		std::cout << std::endl;
+		
+	}
+
+	return 0;
+}
