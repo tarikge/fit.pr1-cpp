@@ -1,0 +1,26 @@
+#include <iostream>
+#include <iomanip>
+
+/*Napišite program koji će omogućiti ispis sljedećeg lika. Upotrijebite for petlje.
+Omogućite korisniku da sam izabere željeni znak i visinu/širinu lika.
+
+*/
+
+
+int main() {
+	char znak;
+	int velicina;
+
+	std::cout << "Unesite velicinu trougla i znak kojim zelite da se ispise" << std::endl;
+	std::cin >> velicina >> znak;
+		
+		for (int i = 1; i < velicina; i++) {
+			for (int j = 0; j < i; j++)
+				std::cout << znak;
+
+			std::cout << std::endl;
+	}
+
+
+	return 0;
+}
