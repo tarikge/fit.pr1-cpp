@@ -1,0 +1,37 @@
+#include <iostream>
+
+/*Napišite program, poštujući sve faze procesa programiranja, koji će omogućiti unos prirodnog broja n, 
+te ga šifrirati prema sljedećem pravilu:
+•	sve znamenke djeljive s 3 zamijeniti brojem po želji korisnika 
+(korisnik unosi vrijednost preko tastature, a vrijednost mora biti jednoznamenkasta),
+a ostale znamenke ostaju kakve su i bile.
+*/
+
+
+int main() {
+	int n=0 ;
+		int zam=0;
+	int privremeni,ost,priv;
+	int i = 1;
+	std::cout << "Unesite prirodni broj:" << std::endl;
+	std::cin >> n;
+	std::cout << "Unesite broj za zamjenu:" << std::endl;
+	std::cin >> zam;
+	priv = n;
+	privremeni = n;
+
+	while (priv != 0) {
+		privremeni = priv % 10;
+		ost = privremeni % 3;
+		if (ost == 0) {
+			n -= privremeni * i;
+			n+= zam*i;
+			
+		}
+		i *= 10;
+		priv /= 10;
+	}
+	std::cout << "Broj" << n;
+	
+	return 0;
+}
