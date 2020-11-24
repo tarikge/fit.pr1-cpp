@@ -1,0 +1,24 @@
+#include <iostream>
+
+/*Napišite program koji za uneseno n, 
+izračunava i ispisuje sumu S=1!+2!+3!...+n! Poštujte sve faze procesa programiranja
+
+*/
+
+
+int main() {
+	int n;
+	int S = 0;
+	int fakt = 1;
+
+	std::cout << "Unesite broj n: " << std::endl;
+	std::cin >> n;
+
+	for (int i = 1; i <= n; i++) {
+		fakt *= i;
+		S += fakt;
+	}
+	std::cout << "Suma faktorijela broja " << n << " je " << S;
+
+	return 0;
+}
