@@ -1,0 +1,30 @@
+#include <iostream>
+
+/*Napišite program, poštujući sve faze procesa programiranja, 
+koji će omogućiti unos jednog prirodnog broja, a ispisati njegov binarni ekvivalent.*/
+int dec2bin(int);
+
+
+int main() {
+	int broj;
+	
+	std::cout << "Unesite broj koji zelite pretvoriti:" << std::endl;
+	std::cin >> broj;
+	int bin = dec2bin(broj);
+
+	std::cout << "Binarni ekvivalent je: " << bin << std::endl;
+
+	return 0;
+}
+
+int dec2bin(int br) {
+	int bin = 0;
+	int i = 1;
+
+	while (br > 0) {
+		bin += (br % 2)*i;
+		br = br / 2;
+		i *= 10;
+	}
+	return bin;
+}
