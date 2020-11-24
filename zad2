@@ -1,0 +1,27 @@
+#include <iostream>
+
+
+/*Napišite program, poštujući sve faze procesa programiranja, 
+koji će omogućiti unos jednog prirodnog broja, a izračunati i ispisati broj znamenki tog broja */
+
+int main() {
+	int broj, zamj;
+	int privremena = 0;
+	int brojac = 0;
+	int zbir = 0;
+
+	std::cout << "Unesite jedan prirodni broj" << std::endl;
+	std::cin >> broj;
+	zamj = broj;
+	while (zamj != 0) {
+		privremena = zamj % 10;
+		zbir += privremena;
+		zamj /= 10;
+		brojac++;
+
+	}
+	std::cout << "Broj znamenki broja " << broj << " je " << brojac<<" a zbir broja "<<broj<<" je "<<zbir;
+
+
+	return 0;
+}
