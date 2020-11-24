@@ -1,0 +1,41 @@
+#include <iostream>
+#include <iomanip>
+
+/*Napišite program koji upotrebom for petlji ispisuje geometrijski lik kvadrat/pravokutnik uz pomoć nekog znaka.
+Omogućite korisniku da sam izabere željeni znak, širinu i visinu 
+(Ako se odlučite za kvadrat - širina će biti jednaka visini.).
+
+*/
+
+
+int main() {
+	char oblik, znak;
+	int sirina, visina;
+
+	std::cout << "Odaberite kvadrat ili pravougaonik unosom k ili p - respektivno i odaberite znak kojim zelite da se iscrta oblik" << std::endl;
+	std::cin >> oblik >> znak;
+
+	if (oblik == 'k'){
+		std::cout << "Unesite duzinu stranice kvadrata: ";
+		std::cin >> sirina;
+		for (int i = 1; i <= sirina; i++) {
+			for (int j = 1; j <= sirina; j++) {
+				std::cout <<std::setw(4)<< znak;
+			}
+			std::cout << std::endl;
+		}
+	}
+	else if(oblik=='p') {
+		std::cout << "Unesite sirinu i visinu pravougaonika: ";
+		std::cin >> sirina >> visina;
+		for (int i = 1; i <= sirina; i++) {
+			for (int j = 1; j <= visina; j++) {
+				std::cout << std::setw(2) << znak;
+
+			}
+			std::cout << std::endl;
+		}
+	}
+
+	return 0;
+}
