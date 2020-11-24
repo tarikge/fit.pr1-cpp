@@ -1,0 +1,36 @@
+#include <iostream>
+
+/*Napišite program u kojem ćete omogućiti unos dva prirodna broja te izračunati i ispisati njihov najveći 
+zajednički djelitelj.
+Npr. ako korisnik unese brojeve 12 i 16 program treba ispisati da je najveći 
+zajednički djelitelj ova dva broja broj 4.
+
+*/
+
+
+int main() {
+	int a, b;
+	int naj = 0;
+	int najdjel = 0;
+	
+
+
+	std::cout << "Unesite dva pozitivna broja: " << std::endl;
+	std::cin >> a >> b;
+
+	if (a < b)
+		naj = a;
+	else
+		naj = b;
+
+	for (int djel = 1; djel < naj; djel++) {
+		if (a % djel == 0 && b % djel == 0)
+			najdjel = djel;
+	}
+
+	std::cout << "Najveci zajednicki djelilac je: " << najdjel;
+
+	
+
+	return 0;
+}
