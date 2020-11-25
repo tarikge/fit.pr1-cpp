@@ -1,0 +1,76 @@
+#include <iostream>
+#include<ctime>
+#include<Windows.h>
+/*Napisite program koji ce primati danasnji datum a ispisivati naredni dan.
+*/
+
+
+int main() {
+	int D, M, G;
+	
+
+	std::cout << "Unesite dan: ";
+	std::cin >> D;
+	std::cout << "Unesite mjesec: ";
+	std::cin >> M;
+	std::cout << "Unesite godinu: ";
+	std::cin >> G;
+
+	switch (M)
+	{
+	case 1:
+	case 3:
+	case 5:
+	case 7:
+	case 8:
+	case 10:
+	case 12:
+		if (D > 31) goto lose;
+		if (D < 31)
+			D++;
+		else if (M < 12) {
+			M++;
+			D = 1;
+		}
+		else {
+			G++;
+			M = 1;
+			D = 1;
+		}
+		break;
+		
+	case 2:
+		if (D > 28) goto lose;
+		if (D < 28)
+			D++;
+		else if (((D < 29) && (G % 4 == 0)) || ((G % 400 == 0) && (G % 100 != 0))) {
+			D++;
+		}
+		else {
+			M++;
+			D = 1; 
+		}
+		break;
+
+	case 4:
+	case 6:
+	case 9:
+	case 11:
+		if (D > 30) goto lose;
+		if (D < 30)
+			D++;
+		else {
+			M++;
+			D = 1;
+		}
+		break;
+lose:		
+	default:
+		std::cout << "Greska";
+		break;
+	}
+	std::cout << D << "." << M << "." << G << ".";
+
+	
+	return 0;
+}
