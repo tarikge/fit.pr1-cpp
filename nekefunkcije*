@@ -10,7 +10,7 @@ int kvadrat(int);//funkcija racuna i vraca kvadrat broja
 int kub(int); //funkcija racuna i vraca kub broja
 bool trivijalan(int); //funkcija provjerava je li broj trivialan-prost
 bool provjera_bin(int); //funkcija provjerava je li broj binaran
-
+bool trivijalan2(int); //druga varijanta -potencijalno bolja
 
 
 int main() {
@@ -64,6 +64,14 @@ bool trivijalan(int broj) {
 	}
 	if (brojac > 2)
 		return false;
+	return true;
+}
+
+bool trivijalan2(int broj) {
+	for (int i = 2; i < broj; i++) {
+		if (broj % i == 0)
+			return false;
+	}
 	return true;
 }
 
