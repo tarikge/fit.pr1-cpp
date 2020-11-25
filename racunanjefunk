@@ -1,0 +1,32 @@
+#include <iostream>
+
+/*Napišite program koji za uneseno x računa y po formuli:
+* y=5x za x<0
+* y=0 za x=0
+* y=2x+4 za x>0
+*/
+
+
+int main() {
+	int x;
+	int y = 0;
+
+	std::cout << "Unesite x: " << std::endl;
+	std::cin >> x;
+
+	if (x < 0) {
+		y = 5 * x;
+		std::cout << "Rezultat funkcije za uneseni broj x: " << x << " je " << y;
+	}
+	else if (x > 0) {
+		y = (2 * x)+4;
+		std::cout << "Rezultat funkcije za uneseni broj x: " << x << " je " << y;
+	}	
+	else {
+		y = 0;
+		std::cout << "Rezultat funkcije za uneseni broj x: " << x << " je " << y;
+	}
+
+
+	return 0;
+}
