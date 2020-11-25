@@ -1,0 +1,24 @@
+#include <iostream>
+
+/*Napišite program, poštujući sve faze procesa programiranja, u kojem ćete omogući korisniku da unese troznamenkasti broj, 
+a ispisati njegovu srednju znamenku (np. za uneseni broj 345 program treba ispisati broj 4).
+U slučaju da korisnik unese broj koji nije troznamenksat program treba ispisati odgovarajuću poruku.
+*/
+
+
+int main() {
+	int x;
+
+	std::cout << "Unesite troznamenkasti broj: " << std::endl;
+	std::cin >> x;
+
+	if (x > 99 && x < 1000) {
+			x /= 10;
+			x = x % 10;
+
+		
+		std::cout << "Srednji broj je" << x;
+	}
+
+	return 0;
+}
