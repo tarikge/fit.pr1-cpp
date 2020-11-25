@@ -11,7 +11,7 @@ int kub(int); //funkcija racuna i vraca kub broja
 bool trivijalan(int); //funkcija provjerava je li broj trivialan-prost
 bool provjera_bin(int); //funkcija provjerava je li broj binaran
 bool trivijalan2(int); //druga varijanta -potencijalno bolja
-
+bool provjera_bin2(int); //druga varijanta
 
 int main() {
 	int b = 0;
@@ -84,4 +84,17 @@ bool provjera_bin(int broj) {
 	}
 	return true;
 	
+}
+bool provjera_bin2(int broj) {
+	int x;
+
+	while (broj) {
+		x = broj % 10;
+		if (x != 0 || x != 1)
+			return false;
+
+		broj /= 10;
+
+	}
+	return true;
 }
