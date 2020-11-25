@@ -1,5 +1,6 @@
 #include <iostream>
 
+
 /*Napišite program, poštujući sve faze procesa programiranja, 
 koji će omogućiti unos jednog prirodnog broja, a ispisati njegov binarni ekvivalent.*/
 int dec2bin(int);
