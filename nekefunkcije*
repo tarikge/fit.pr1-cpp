@@ -90,7 +90,8 @@ bool provjera_bin2(int broj) {
 
 	while (broj) {
 		x = broj % 10;
-		if (x != 0 || x != 1)
+		if (x != 0 && x != 1)
+			//if(!(x==0 || x==1)) druga varijanta uslova- *if(x!=0||x!=1) NE RADI*
 			return false;
 
 		broj /= 10;
