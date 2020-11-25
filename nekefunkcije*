@@ -62,9 +62,9 @@ bool trivijalan(int broj) {
 			brojac++;
 		
 	}
-	if (brojac == 2)
-		return true;
-	return false;
+	if (brojac > 2)
+		return false;
+	return true;
 }
 
 bool provjera_bin(int broj) {
