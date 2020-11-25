@@ -1,0 +1,79 @@
+#include <iostream>
+#include<cmath>
+
+/*KREIRAJTE I TESTIRAJTE DEFINIRANE FUNKCIJE
+*/
+
+int min(int, int, int);// funkcije usporedjuje i vraća najmanji od tri cijela broja
+int max(int, int, int);// funkcije usporedjuje i vraća najveci od tri cijela broja
+int kvadrat(int);//funkcija racuna i vraca kvadrat broja
+int kub(int); //funkcija racuna i vraca kub broja
+bool trivijalan(int); //funkcija provjerava je li broj trivialan-prost
+bool provjera_bin(int); //funkcija provjerava je li broj binaran
+
+
+
+int main() {
+	int b = 0;
+	std::cin >> b;
+	
+	std::cout<< kub(b);
+	return 0;
+}
+
+int min(int br1,int br2,int br3) {
+
+	if (br1 < br2 && br1 < br3)
+		return br1;
+	if (br2 < br1 && br2 < br3)
+		return br2;
+	return br3;
+}
+
+int max(int br1, int br2,int br3) {
+	
+	if (br1 > br2 && br1 > br3)
+		return br1;
+	if (br2 > br1 && br2 > br3)
+		return br2;
+	return br3;
+}
+
+int kvadrat(int broj) {
+
+	//broj = pow(broj, 2);
+	broj = broj * broj;
+	return broj;
+}
+
+int kub(int broj) {
+	
+	//broj = pow(broj, 3);
+	broj = broj * broj * broj;
+	return broj;
+}
+
+bool trivijalan(int broj) {
+	int brojac = 0;
+	for (int i = 1; i <= broj; i++) {
+
+		int pomocna = broj % i;
+		if (pomocna == 0)		
+			brojac++;
+		
+	}
+	if (brojac == 2)
+		return true;
+	return false;
+}
+
+bool provjera_bin(int broj) {
+	while (broj) {
+		int x = broj % 10;
+		if (x * x != x)
+			return false;
+		broj /= 10;
+	}
+	return true;
+	
+}
