@@ -1,0 +1,35 @@
+#include <iostream>
+
+/*Napišite program, poštujući sve faze procesa programiranja (analiza, specifikacija, dizajn, kod, validacija/testiranje),
+u kojem ćete omogući unos jednog malog slova engleske abecede. Program treba ispisati 
+neposrednog prethodnika i neposrednog sljedbenika slova kojeg je korisnik upisao preko tastature. 
+U slučaju da je korisnik napravio pogrešan unos (upisao karakter koji nije malo slovo)
+program treba ispisati odgovarajuću poruku.
+Vodite računa da slovo a nema prethodnika, a slovo z nema sljedbenika.
+*/
+
+
+int main() {
+	char slovo;
+	char slovoprije;
+	char slovoposlije;
+	std::cout << "Unesite malo slovo: " << std::endl;
+	std::cin >> slovo;
+	char slovo1 = slovo;
+	if (slovo < 97 && slovo>122)
+		std::cout << "Niste unijeli malo slovo" << std::endl;
+	else
+		if (slovo == 97)
+			std::cout << "Slovo a nema prethodnika, a sljedbenik slova a je: " << ++slovo;
+		else
+			if (slovo == 122)
+				std::cout << "Prethodnik slova z je: " << --slovo << " i slovo z nema sljedbenika";
+			else {
+				slovoprije = --slovo;
+				slovoposlije = ++slovo1;
+				std::cout << "Prethodnik slova " << slovo << " je :" << slovoprije << ", sljedbenik je: " << slovoposlije;
+			}
+
+
+	return 0;
+}
