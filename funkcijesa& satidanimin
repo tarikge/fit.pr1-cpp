@@ -209,3 +209,62 @@ int main() {
 	
 	return 0;
 }
+
+
+...................................................cetvrti..........................................
+#include <iostream>
+#include<cmath>
+
+/*Napišite program, poštujući sve faze procesa programiranja, 
+u kojem ćete unijeti jedan prirodan broj koji predstavlja vrijeme u minutama,
+a izračunati i ispisati koliko je to vremena u danima, satima i  minutama.
+Upotrijebite funkcije:
+int sati (int &);
+int dani (int &);
+Npr, ako korisnik unese 1520 minute program treba ispisati da je to 1 dan 1 sat i 20 minuta. (1sat =60 minuta; 1 dan=24 sata=1440 minuta)
+
+*/
+
+int sati(int& hour) {
+	
+	int s = hour / 60;
+	hour = hour % 60;
+
+	
+
+	return s;
+}
+
+int dani(int& day) {
+	int d = day / 1440;
+	day = day % 1440;
+
+	
+	
+	
+	return d;
+}
+
+
+int main() {
+	int vrijeme, vrijeme1, vrijeme2;
+
+	std::cout << "Unesite vrijeme u minutama";
+	std::cin >> vrijeme;
+
+	//prirodni broj
+	while (vrijeme <= 0) {
+		std::cout << "Unesite vrijeme u minutama";
+		std::cin >> vrijeme;
+	}
+	//bitan redoslijed zbog redoslijeda couta s desna na lijevo
+	std::cout << "Uneseno vrijeme je: " << dani(vrijeme);
+		std::cout<< " dan(a), " << sati(vrijeme) << " sat(i), i ";
+	std::cout << vrijeme << " minuta,";
+
+
+
+
+	
+	return 0;
+}
