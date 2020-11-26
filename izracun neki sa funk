@@ -1,0 +1,49 @@
+#include <iostream>
+#include <cmath>
+/*
+Poštujući faze procesa programiranja napisati program u kojem će se za uneseni prirodni broj n računati:
+S=1/(n+1)-2/(n+2!)+3/(n+3!)-4/(n+4!)+⋯+〖(-1)〗^(n-1) (n/(n+n!))
+Glavnina programa može ostati u main() funkciji. Za računanje faktorijela (i!) koristiti funkciju:
+int faktorijel(int);
+
+
+*/
+/*int faktorijel(int broj) {
+	int fakt = broj;
+	for (int i = 1; i < broj; i++) {
+		fakt *= i;
+	}
+	return fakt;
+}
+*/
+
+int faktorijel(int broj) {
+	int fakt = 1;
+	for (int i = 1; i <= broj; i++) {
+		fakt *= i;
+	}
+	return fakt;
+}
+
+
+int main() {
+	int n;
+	float S;
+	float sum=0;
+	int alt;
+	std::cout << "Unesite broj: " << std::endl;
+	std::cin >> n;
+
+	
+	
+	for (int i = 1; i <= n; i++) {
+		float fakt = faktorijel(i);
+		alt = pow(-1.0f, (i - 1.0f));
+		S = alt * (i / (i + fakt));
+		sum += S;
+	}
+	std::cout << "Rezultat je: " << sum;
+
+	
+	return 0;
+}
