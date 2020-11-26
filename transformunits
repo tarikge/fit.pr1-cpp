@@ -1,0 +1,43 @@
+#include <iostream>
+
+/*Napisati C++ program koji učitava vrijednosti prijeđenog puta u kilometrima,
+a zatim vrši konverziju u mjernu jedinicu po izboru korisnika: centimetre, milimetre, milje ili  stope. 
+Problem riješiti pomoću funkcija!
+1 milja = 1.60935 km
+1 stopa = 30.48 cm
+
+*/
+
+void konverzija(float& iznos, char odabir) {
+	if (odabir == 'c') {
+		iznos = iznos * 100000;
+		std::cout << "Predjeni put iznosi " << iznos << " u mjernoj jedinici: centimetri " ;
+	}
+	else if (odabir == 'm') {
+		iznos = iznos * 100000 * 10;
+		std::cout << "Predjeni put iznosi " << iznos << " u mjernoj jedinici: milimetri " ;
+	}
+	else if (odabir == 'a') {
+		iznos = iznos * 1.60935;
+		std::cout << "Predjeni put iznosi " << iznos << " u mjernoj jedinici: milje ";
+	}
+	else if (odabir == 'f') {
+		iznos = iznos * 3280.84;
+		std::cout << "Predjeni put iznosi " << iznos << " u mjernoj jedinici: centimetri " ;
+	}
+}
+
+
+int main() {
+	float put;
+	char odabir;
+	std::cout << "Unesite predjeni put u km: " << std::endl;
+	std::cin >> put;
+	std::cout << "Unesite u kojoj mjernoj jedinici zelite da se predjeni put ispise cm(c), mm(m), mile(a), foot(f):"<<std::endl;
+	std::cin >> odabir;
+	konverzija(put, odabir);
+	
+
+	
+	return 0;
+}
