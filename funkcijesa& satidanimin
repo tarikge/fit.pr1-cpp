@@ -225,6 +225,8 @@ Npr, ako korisnik unese 1520 minute program treba ispisati da je to 1 dan 1 sat 
 
 */
 
+//moglo se olaksati zamjenom redoslijeda funkcija sati i dani tako da unutar sata pozivamo dane da bi promjenili 
+
 int sati(int& hour) {
 	
 	int s = hour / 60;
@@ -257,7 +259,7 @@ int main() {
 		std::cout << "Unesite vrijeme u minutama";
 		std::cin >> vrijeme;
 	}
-	//bitan redoslijed zbog redoslijeda couta s desna na lijevo
+	//bitan redoslijed zbog redoslijeda izvrsavanja couta s desna na lijevo
 	std::cout << "Uneseno vrijeme je: " << dani(vrijeme);
 		std::cout<< " dan(a), " << sati(vrijeme) << " sat(i), i ";
 	std::cout << vrijeme << " minuta,";
