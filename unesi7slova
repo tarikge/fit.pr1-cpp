@@ -1,0 +1,61 @@
+#include <iostream>
+
+/*
+Zadatak:
+napišite program koji će:
+o	omogućiti unos niza od 7 malih slova engleske abecede uz pomoć funkcije:
+void unos(char [], int);
+o	prebrojati koliko među elementima niza ima samoglasnika (vokala) uz pomoć funkcije: int vokali(char [], int);
+o	promijeniti vrijednosti članova niza iz malih u velika slova uz pomoć funkcije:
+void velika(char [], int);
+o	Ispisati promijenjene vrijednosti članova niza uz pomoć funkcije:
+void ispis(char [], int);
+
+ASCII kod: velika slova  od 65 do 90, mala slova  od 97 do 122.
+a97
+e101
+i105
+o111
+u117
+*/
+
+void unos(char niz[], int broj) {
+	for (int i = 0; i < broj; i++) {
+		std::cin >> niz[i];
+		if (niz[i] < 97 || niz[i]>122)
+			std::cin >> niz[i];
+	}
+}
+int vokali(char niz[], int broj) {
+	int brojac = 0;
+	for (int i = 0; i < broj; i++) {
+		if (niz[i] == 97 || niz[i] == 101 || niz[i] == 105 || niz[i] == 111 || niz[i] == 117)
+			brojac++;
+	}
+	return brojac;
+}
+void velika(char niz[], int broj) {
+	for (int i = 0; i < broj; i++) {
+		niz[i] -= 32;
+	}
+}
+void ispis(char niz[], int broj) {
+	for (int i = 0; i < broj; i++) {
+		std::cout << niz[i];
+	}
+}
+
+int main() {
+	const int vel = 7;
+	char niz[vel];
+
+	std::cout << "Unesite niz od 7 malih slova: " << std::endl;
+	unos(niz, vel);
+	//vokali(niz, vel);
+
+	std::cout << "Vokala je: " << vokali(niz, vel) << std::endl;
+	velika(niz, vel);
+	ispis(niz, vel);
+
+	return 0;
+}
