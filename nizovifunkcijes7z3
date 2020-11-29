@@ -1,0 +1,50 @@
+#include <iostream>
+#include <iomanip>
+/*
+Zadatak: Napišite program u kojem ćete omogućiti kreiranje niza od 6 cjelobrojnih elemenata.
+•	definirati i upotrijebiti funkciju vodi unos(int [], int);
+•	definirati i upotrijebiti funkciju float suma(int [], int); koja će izračunati sumu recipročnih vrijednosti elemenata niza; (Recipročna vrijednost broja n je 1/n.)
+•	definirati i upotrijebiti funkciju int prebroji(int [], int) koja treba ispisati sve pozitivne elemente niza i njihove indekse, 
+te prebrojati koliko takvih elemenata ima;
+Ispis sume recipročnih vrijednosti i broja pozitivnih elemenata vršiti u funkciji main
+
+*/
+const int vel = 6;
+void unos(int niz[], int vel) {
+	for (int i = 0; i < vel; i++) {
+		std::cin >> niz[i];
+	}
+		
+}
+
+float suma(int niz[], int vel) {
+	float suma = 0;
+	for (int i = 0; i < vel; i++)
+		suma += (1.0f / niz[i]);
+	return suma;
+}
+
+int prebroji(int niz[], int vel) {
+	int brojac = 0;
+	std::cout << "Pozitivni elementi niza su: " << std::endl;
+
+	for (int i = 0; i < vel; i++) {
+		if (niz[i] >= 0) {
+			std::cout << "indeks: " << i << std::endl;
+			std::cout << niz[i] << std::endl;			
+			brojac++;
+		}
+		}
+	return brojac;
+}
+
+
+int main() {
+	
+	int niz[vel];
+	unos(niz, vel);
+	std::cout << "Reciprocna vrijednost clanova niza je: " << suma(niz, vel) << std::endl;
+	int brojac=prebroji(niz, vel);
+	std::cout << "A njih je: " << brojac;
+	return 0;
+}
