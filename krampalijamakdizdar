@@ -1,0 +1,58 @@
+#include <iostream>
+#include <iomanip>
+/*
+Napišite program u kojem ćete deklarirati tri niza od 5 cijelih brojeva. Uz pomoć funkcije:
+•	void unos(int[], int);omogućite unos elemenata u prva dva niza;
+•	float inicijalizacija(int[], int[], int[], int);
+inicijalizirati elemente trećeg niza tako da je niz3[i]=min(niz1[i], niz2[i]);
+(u niz3 se dodaje manji od dva elementa iz prethodna dva niza; dva elementa sa istim indeksima)
+•	bool opadajuci(int[], int);provjeriti jesu li elementi niza poredani u opadajućem poretku (n1>n2>n3>n4>n5) ;
+Korisnik bira za koji niz će se provjeravati jesu li mu elementi u opadajućem poretku.
+
+*/
+const int vel = 5;
+void unos(int niz[][vel]) {
+	for (int i = 0; i < 2; i++) {
+		for(int j=0; j<vel;j++)
+			std::cin >> niz[i][j];
+	}
+		
+}
+
+float inicijalizacija(int niz[][vel], int vel) {
+	float br=0;
+
+		for (int i = 0; i < vel; i++) {
+			if (niz[0][i] < niz[1][i])
+				niz[2][i] = niz[0][i];
+			else if (niz[1][i] < niz[0][i])
+				niz[2][i] = niz[1][i];
+			if(niz[2][i]<9)
+				br += (niz[2][i]) * pow(10.0f, -i);
+			else 
+				br += (niz[2][i]) * pow(100.0f, -i);
+		}
+	
+	return br;
+}
+
+/*bool opadajuci(int niz[][vel], int odabir) {
+
+		for (int i = 0; i < vel; i++){
+			if (niz[odabir][i] < niz[odabir][i + 1])
+				return true;
+	}
+		return false;
+}*/
+
+int main() {
+	
+	int niz[3][vel];
+	int odabir;
+	unos(niz);
+	std::cout<<std::setprecision(11)<<inicijalizacija(niz, vel);
+	//std::cin >> odabir;
+
+	//std::cout<<std::boolalpha<<opadajuci(niz, odabir);
+	return 0;
+}
