@@ -1,0 +1,55 @@
+#include <iostream>
+/*
+Napisati program koji će pronaći i ispisati sve brojeve od X do Y (uključujući granične vrijednosti) 
+koji su deljivi svim svojim ciframa. Na primjer, broj 36 je djeljiv sa brojevima 3 i 6. (36/6=6 i 36/3=12). 
+Brojeve X i Y unosi korisnik i moraju biti u opsegu od 10 do 6000. Obavezno koristiti bar jednu funkciju.
+*/
+
+void unos(int& broj) {
+	
+	 do{
+		 std::cin >> broj;
+		 if (broj < 10 || broj>6000)
+			 std::cout << "Unesite broj ponovo: (od 10 do 6000)" << std::endl;
+	 } while (broj < 10 || broj>6000);
+}
+
+bool provjera(int broj) {
+	int br;
+	br = broj;
+	int znamenka;
+	while (broj > 0) {
+		znamenka = broj % 10;
+		if (znamenka == 0 || br % znamenka != 0)
+			return false;
+		broj /= 10;
+		
+	} 
+
+
+	return true;
+}
+
+
+
+int main() {
+	int x, y;
+	int veci = 0;
+	std::cout << "Unesite broj od 10 do 6000" << std::endl;
+	unos(x);
+	unos(y);
+	
+
+	if (x > y) {
+		veci = x;
+		x = y;
+		y = veci;
+	}
+	for (int i = x; i < y; i++) {
+		if(provjera(i))
+		std::cout << i << std::endl;
+	}
+	
+	
+	return 0;
+}
