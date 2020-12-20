@@ -1,0 +1,143 @@
+#include <iostream>
+/*
+Prepravite program tako da:
+•	U strukturu ucenik dodate obiljezja:
+	rodjendan koje je tipa datum struct datum {int dan, int mjesec, int godina};
+	Prosjecna koje je tipa float
+•	U strukturi datum dodati funkcije članice – void unos(),void ispis(),
+	bool validacija_datuma(int, int, int);
+•	U strukturi ucenik dodati funkcije članice – void unos(), void ispis(), float prosjek();
+•	kreirati globalnu funkciju void pretragaPoDatumu(ucenik [], int, datum); čiji je zadatak pronaći
+	i ispisati sve ucenike s istim datumom rođenja
+
+*/
+
+int G = 1;
+const int vel = 3;
+
+struct datum {
+	int dan;
+	int mjesec;
+	int godina;
+	void unosD();
+	void ispisD() {
+		std::cout << dan << "." << mjesec << "." << godina << "." << std::endl;
+	};
+	bool validacija_datuma(int, int, int);
+};
+
+void datum::unosD() {
+	std::cout << "Unesite dan rodjenja: " << std::endl;
+	std::cin >> dan;
+	std::cout << "Unesite mjesec rodjenja: " << std::endl;
+	std::cin >> mjesec;
+	std::cout << "Unesite godinu drodjenja: " << std::endl;
+	std::cin >> godina;
+}
+
+bool datum::validacija_datuma(int d, int m, int g) {
+	int min = 1, max = 31;
+	if (g < 2000 || g>2015)
+		return false;
+	if (m < 1 || m>12)
+		return false;
+
+	if ((m == 2) && (g % 4 == 0 || g % 400 == 0) && (g % 100 != 0))
+		max = 29;
+	else
+		max = 28;
+
+	if (m == 4 || m == 6 || m == 9 || m == 11)
+		max = 30;
+
+	if (d >= min && d <= max)
+		return true;
+
+	return false;
+}
+
+
+struct ucenik {
+	int RB;
+	char ime[15];
+	char prezime[20];
+	int ocjene[5];
+	datum rodjendan;
+	float prosjecna;
+	void unos();
+	void ispis();
+	float prosjek();
+}ob[vel];
+
+void ucenik::unos() {
+	RB = G++;
+	std::cout << "Unesite ime ucenika: " << std::endl;
+	std::cin.getline(ime, 15);
+
+	std::cout << "Unesite prezime ucenika: " << std::endl;
+	std::cin.getline(prezime, 20);
+	rodjendan.unosD();
+	
+	std::cout << "Unesite pet ocjena ovog ucenika:" << std::endl;
+	for (int i = 0; i < 5; i++) {
+		std::cin >> ocjene[i];
+		if (ocjene[i] < 1 || ocjene[i]>5)
+			i--;
+	}
+	std::cin.ignore();
+}
+
+void ucenik::ispis() {
+	std::cout << "Redni broj: " << RB << std::endl;
+	std::cout << "Ime: " << ime << std::endl;
+	std::cout << "Prezime: " << prezime << std::endl;
+	rodjendan.ispisD();
+	std::cout << "Ocjene: ";
+	for (int i = 0; i < 5; i++) {
+		std::cout << " " << ocjene[i];
+	}
+	std::cout << std::endl;
+	std::cout << "Prosjek: " << prosjek();
+}
+
+float ucenik::prosjek() {
+	float prosjecna= 0;
+	for (int i = 0; i < 5; i++) {
+		prosjecna+=ocjene[i] ;
+	}
+	prosjecna /= 5;
+	return prosjecna;
+}
+
+void pretragaPoDatumu(ucenik ob[], int v, datum d) {
+	for (int i = 0; i < v; i++) {
+		if (ob[i].rodjendan.dan == d.dan && ob[i].rodjendan.mjesec == d.mjesec && ob[i].rodjendan.godina == d.godina)
+			ob[i].ispis();
+	}
+
+}
+
+int main() {
+	
+	datum d;
+	std::cout << "unesite obiljezja ucenika" <<std::endl;
+
+	for (int i = 0; i < 3; i++)
+		
+		ob[i].unos();
+
+	std::cout << "ISPIS" << std::endl;
+	for (int i = 0; i < 3; i++)
+		ob[i].ispis();
+
+	std::cout << "unesite datum za pretragu" <<std::endl;
+	d.unosD();
+	pretragaPoDatumu(ob, 3, d);
+
+
+	
+	
+	
+	
+	return 0;
+}
