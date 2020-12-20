@@ -1,0 +1,99 @@
+#include <iostream>
+/*
+Prepravite program tako da:
+•	U strukturu ucenik dodate obiljezja:
+	rodjendan koje je tipa datum struct datum {int dan, int mjesec, int godina};
+	Prosjecna koje je tipa float
+•	U strukturi datum dodati funkcije članice – void unos(),void ispis(),
+	bool validacija_datuma(int, int, int);
+•	U strukturi ucenik dodati funkcije članice – void unos(), void ispis(), float prosjek();
+•	kreirati globalnu funkciju void pretragaPoDatumu(ucenik [], int, datum); čiji je zadatak pronaći
+	i ispisati sve ucenike s istim datumom rođenja
+
+*/
+
+const int vel = 3;
+
+struct ucenik {
+	int RB;
+	char ime[15];
+	char prezime[20];
+	int ocjene[5];
+}ob[vel];
+
+void unos(ucenik& o1) {
+	std::cout << "Unesite redni broj ucenika: " << std::endl;
+	std::cin >> o1.RB;
+	std::cin.ignore();
+
+	std::cout << "Unesite ime ucenika: " << std::endl;
+	std::cin.getline(o1.ime, 15);
+
+	std::cout << "Unesite prezime ucenika: " << std::endl;
+	std::cin.getline(o1.prezime, 20);
+	
+	std::cout << "Unesite pet ocjena ovog ucenika:" << std::endl;
+	for (int i = 0; i < 5; i++) {
+		std::cin >> o1.ocjene[i];
+		if (o1.ocjene[i] < 1 || o1.ocjene[i]>5)
+			i--;
+	}
+
+}
+
+void ispis(ucenik o1) {
+	std::cout << "Redni broj: " << o1.RB << std::endl;
+	std::cout << "Ime: " << o1.ime << std::endl;
+	std::cout << "Prezime: " << o1.prezime << std::endl;
+	std::cout << "Ocjene: ";
+	for (int i = 0; i < 5; i++) {
+		std::cout<<" "<< o1.ocjene[i];
+	}
+	std::cout << std::endl;
+}
+
+//d)	Kreirati funkciju float prosjecna (ucenik); koja računa prosječnu ocjenu za jednog učenika;
+
+float prosjecna(ucenik o1) {
+	float prosjecna= 0;
+	for (int i = 0; i < 5; i++) {
+		prosjecna+=o1.ocjene[i] ;
+	}
+	prosjecna /= 5;
+	return prosjecna;
+}
+
+ucenik najgori(ucenik o1[], int v) {
+	float min = prosjecna(o1[0]);
+	int pom = 0;
+
+	for (int i = 0; i < v; i++) {
+		if (prosjecna(o1[i]) < min) {
+			min = prosjecna(o1[i]);
+			pom = i;
+		}
+	}
+	return o1[pom];
+}
+
+
+int main() {
+	
+	
+	
+	for (int i = 0; i < vel; i++) {
+		unos(ob[i]);
+		ispis(ob[i]);
+		std::cout << "Prosjecna ocjena je: " << prosjecna(ob[i]) << std::endl;
+		
+	}
+	std::cout << "ucenik s najgorim prosjekom je ";
+	ispis(najgori(ob, 3));
+
+	
+	
+	
+	
+	
+	return 0;
+}
