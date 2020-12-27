@@ -1,0 +1,50 @@
+#include <iostream>
+
+/*Zadatak 1
+Kreirajte niz od onoliko realnih brojeva koliko izabere korisnik(ili kreirajte statički niz od 5 elemenata).
+
+•	Kreirajte sljedeće funkcije :
+void unos(float*, int);
+void ispis(float*, int);
+float* zadnji(float*, int); koja vraća adresu najmanjeg elemenata u nizu;
+float* zeljeni(float*, int); koja vraća adresu elemenata po izboru korisnika;
+*/
+
+void unos(float* niz, int vel) {
+	for (int i = 0; i < vel; i++) {
+		std::cin >> *(niz + i);
+	}
+}
+
+void ispis(float* niz, int vel) {
+	for (int i = 0; i < vel; i++) {
+		std::cout << *(niz + i) << " ";
+	}
+}
+
+float* zadnji(float* niz, int vel) {
+	return &niz[vel-1];
+}
+
+float* zeljeni(float* niz, int vel) {
+	int x;
+	std::cout << "Adresu kojeg elementa zelite?" << std::endl;
+	std::cin >> x;
+	if (x >= 1 && x <= 5)
+		return &niz[x - 1];
+	else
+		return zeljeni(niz, vel);
+}
+
+int main() {
+
+	const int vel=5;
+	float niz[vel];
+	unos(niz, vel);
+	ispis(niz, vel);
+	std::cout << "ADRESA" << zadnji(niz, vel);
+	std::cout << "ADRESA       " << zeljeni(niz, vel);
+	return 0;
+
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
