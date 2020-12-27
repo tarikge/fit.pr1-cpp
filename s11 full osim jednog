@@ -1,0 +1,172 @@
+#include <iostream>
+/*
+
+Rekurzija
+
+Zadatak 1
+Napišite program u kojem ćete upotrijebiti rekurzivnu funkciju čiji je zadatak računanje sume kvadrata od 1 do n (n je prirodan broj).
+
+Zadatak 2
+Napišite program u kojem ćete upotrijebiti rekurzivnu funkciju čiji je zadatak računanje sume kvadrata od n do m (n i m su prirodni brojevi i n<m).
+
+
+
+
+Zadatak 3
+Napišite program u kojem ćete upotrijebiti rekurzivnu funkciju čiji je zadatak  računanje n-tog člana Fibonacci-jevog niza.
+
+
+
+
+Zadatak 4
+Napišite program u kojem ćete upotrijebiti rekurzivnu funkciju čiji je zadatak da izračuna m^n pri čemu su i m i n prirodni brojevi i n<m.
+
+Zadatak 5
+Napišite program koji korištenjem rekurzivne funkcije ispisuje binarni ekvivalent unesenog prirodnog broja N.
+
+
+
+
+Zadatak 6
+Banka na početku  svake godine ulagačima obračunava kamatu od P postotaka na novčanu sumu koja je odležala u toku prethodne godine. Uz pomoć rekurzivne funkcije Kamata, izračunati novčani iznos kojim će ulagač raspolagati poslije G godina, ako je početno ulaganje S i ako ulagač nije u toku obračunskog perioda podizao novac.
+
+
+
+Zadatak 7
+Napišite program koji će omogućiti kreiranje niza od 7 cijelih brojeva,
+te uz pomoć rekurzivnih funkcija omogućiti:
+	unos elemenata,
+	ispis elemenata,
+	izračunati sumu svih elemenata niza,
+	sumu pozitivnih elemenata niza,
+	sumu elemenata niza s parnim indeksom.
+	void unos(int br[], int z){
+	std::cin<<br;
+	std::cout<<br;
+	suma=suma+br[z]
+	return br[z];
+
+
+
+
+Zadatak 8
+Napišite program koji će omogućiti kreiranje matrice 3x3 cijelih brojeva, te uz pomoć rekurzivnih funkcija omogućiti:
+	unos elemenata,
+	ispis elemenata,
+	izračunati sumu svih elemenata matrice,
+	sumu pozitivnih elemenata matrice,
+	sumu elemenata matrice s parnim indeksima.
+
+
+
+*/
+//Napišite program u kojem ćete upotrijebiti rekurzivnu funkciju čiji je zadatak računanje sume kvadrata od 1 do n (n je prirodan broj).
+
+int Kvadrat(int n) {
+	if (n == 1)
+		return 1;
+	return n * n + Kvadrat(n-1);
+}
+
+//Napišite program u kojem ćete upotrijebiti rekurzivnu funkciju čiji je zadatak računanje sume kvadrata od n do m (n i m su prirodni brojevi i n<m).
+int kvadratic(int n, int m) {
+	if (n == m)
+		return n;
+	return m * m + kvadratic(n,m - 1);
+}
+
+//Napišite program u kojem ćete upotrijebiti rekurzivnu funkciju čiji je zadatak  računanje n-tog člana Fibonacci-jevog niza.
+int fibonaki(int z) {
+	if (z == 1 || z == 2)
+		return 1;
+
+	return fibonaki(z - 1) + fibonaki(z - 2);
+}
+
+//Napišite program u kojem ćete upotrijebiti rekurzivnu funkciju čiji je zadatak da izračuna m^n pri čemu su i m i n prirodni brojevi i n<m.
+int ekspo(int n, int m) {
+	if (n == 0)
+		return 0;
+	return m*m+ekspo(n-1,m);
+}
+
+//Napišite program koji korištenjem rekurzivne funkcije ispisuje binarni ekvivalent unesenog prirodnog broja N.
+int binarni(int n, int i) {
+	if (n == 0)
+		return 0;
+	return n % 2 * pow(10, i) + binarni(n / 2, i + 1);
+}
+
+double kamata(int s, int g) {
+	if (g == 0)
+		return 0;
+	return g / s + kamata(s, g - 1);
+}
+
+void unos(int br[], int z) {
+	if (z == 0) 
+		std::cin >> br[z];
+	else {
+		std::cin >> br[z];
+		unos(br, z - 1);
+	}
+	
+
+}
+
+void ispis(int br[], int z) {
+	if (z == 0)
+		std::cout << br[z];
+	else {
+		std::cout << br[z]<<" ";
+		ispis(br, z - 1);
+	}
+}
+
+int suma(int br[], int z) {
+	if (z == 0)
+		return br[z];
+	return br[z] + suma(br, z - 1);
+}
+
+int sumapoz(int br[], int z) {
+	if (z < 0)
+		return 0;
+	
+	if (br[z] > 0)
+		return br[z] + sumapoz(br, z - 1);
+
+	else  return sumapoz(br, z - 1);
+
+}
+
+int sumaparind(int br[], int z) {
+	if (z == 1)
+		return 0;
+	if (z % 2 == 0 && z != 0)
+		return br[z] + sumaparind(br, z - 2);
+
+	
+}
+
+int main() {
+	int n, m;
+	const int z = 7;
+	int br[z];
+	std::cout << "Unesite broj" << std::endl;
+	do {
+		std::cin >> n >> m;
+	} while (n > m);
+	std::cout << Kvadrat(n) << std::endl;
+	std::cout << kvadratic(n,m) << std::endl;
+	std::cout << fibonaki(m) << std::endl;
+	std::cout << ekspo(n, m) << std::endl;
+	std::cout << binarni(n, 0) << std::endl;
+	std::cout << kamata(n, m) << std::endl;
+	unos(br, z-1);
+	ispis(br, z-1);
+	std::cout<<std::endl<<suma(br, z - 1);
+	std::cout << std::endl << sumapoz(br, z-1);
+	std::cout << std::endl << sumaparind(br, z - 1);
+	return 0;
+}
