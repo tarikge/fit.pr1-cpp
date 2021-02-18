@@ -1,0 +1,29 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+
+int main() {
+	int x, brojac=0;
+	float rez = 1.0f;
+
+	std::cout << "Unesite broj:" << std::endl;
+	std::cin >> x;
+
+
+	
+	for (int i = 1; i <= x; i+=2) {
+		if (i % 5 != 0) {
+			rez *=i;
+			brojac++;
+			
+		}
+		
+	}
+	rez = pow(rez, 1 / double(brojac));
+	
+
+	std::cout << std::setprecision(3) << rez;
+
+
+	return 0;
+}
