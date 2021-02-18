@@ -1,0 +1,35 @@
+#include <iostream>
+#include <cmath>
+
+float kalkulacija(float x, char fx) {
+	float rezultat = 0.0f;
+	if (fx == 's') {
+		for (int i = 1; i <= x; i++)
+		rezultat += (i / (sin(x / i) + x));
+	}
+	else if (fx == 'c') {
+		for (int i = 1; i <= x; i++) 
+			rezultat += (i / (cos(x / i) + x));
+	}
+	return rezultat;
+}
+
+int main() {
+	float x;
+	char fx;
+
+	std::cout << "Unesite neki realan broj: ";
+	std::cin >> x;
+	std::cout << "Unesite slovo s ili c za odabir funkcije SIN ili COS, respektivno";
+	do {
+	std::cin >> fx;
+	} while (fx != 's' && fx != 'c');
+	
+	
+	std::cout << "Rezultat ove funckije je:" << kalkulacija(x, fx);
+
+
+
+
+	return 0;
+}
