@@ -1,0 +1,30 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+
+int unos() {
+	int x;
+	std::cout << "Unesite broj:" << std::endl;
+	std::cin >> x;
+	return x;
+}
+
+
+int main() {
+	int x, brojac = 1, broj = 0;
+
+	do {
+		x = unos();
+		if (x < 0)
+			break;
+		if (x > 9)
+			std::cout << "Nije validna" << std::endl;
+		else
+			broj = broj * 10 + x;
+		
+	} while (x > 0);
+	
+	std::cout << "Broj sastavljen od zadanih cifara je: " << broj << std::endl;
+
+	return 0;
+}
