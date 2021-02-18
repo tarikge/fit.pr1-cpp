@@ -1,0 +1,54 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+
+
+int obrt(int x) {
+	int pomocna = 0;
+	while (x > 0) {
+		pomocna = pomocna*10+x%10;
+		x = x / 10;
+		
+	}
+	return pomocna;
+
+}
+
+int zbir(int x) {
+	int pomocna = 0;
+	while (x > 0) {
+		pomocna += x % 10;
+		x /= 10;
+	}
+	return pomocna;
+}
+
+bool dali(int x, int q) {
+	if (x % q==0)
+		return 1;
+	else
+		return 0;
+}
+
+int main() {
+	int x, y,pom,s,t;
+
+	std::cin >> x >> y;
+	if (x > y) {
+		pom = x;
+		x = y;
+		y = pom;
+	}
+		
+	for (int i = x; i <= y; i++) {
+		s = obrt(i);
+		t = zbir(i);
+		if (dali(s, t)) {
+			std::cout << i<<" ";
+		}
+	}
+
+	
+	
+	return 0;
+}
