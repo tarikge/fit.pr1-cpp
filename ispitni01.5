@@ -1,0 +1,46 @@
+#include<iostream>
+#include<cmath>
+
+int main() {
+	double x;
+	int m;
+	char odabir;
+	float fx = 0.0;
+
+
+	std::cout << "Unesite jedan realan broj" << std::endl;// , cijeli broj i odaberite funkciju s / o / m / d" << std::endl;
+	std::cin >> x;
+	std::cout << "Unesite jedan cijeli broj" << std::endl;
+	std::cin >> m;
+	do {
+		std::cout << "Odaberite funkciju s-o-m-d"<<std::endl;
+		std::cin >> odabir;
+	} while (odabir != 's' && odabir != 'o' && odabir != 'm' && odabir != 'd');
+
+
+	for (int i = 1; i <= m; i++) {
+		switch (odabir) {
+			case 's':
+				fx += (x - i) * i;
+				break;
+			case 'o':
+				fx = x-1.0;
+				fx -= (x - i) * i;
+				break;
+			case 'd':
+				fx = x-1.0;
+				fx /= (x - i) * i;
+				break;
+			case 'm':
+				fx = x-1.0;
+				fx *= (x - i) * i;
+				break;
+		}
+	}
+	std::cout << "Rezultat je: " << fx;
+
+		
+
+
+	return 0;
+}
