@@ -1,0 +1,32 @@
+#include<iostream>
+#include<stdlib.h>
+#include<time.h>
+
+int main() {
+	srand(time(NULL));
+	for (int q = 1; q <= 20; q++)
+		std::cout << rand() % 6 << std::endl;
+	
+	int uz = 0;
+	int kock1=0, kock2=0, kock3 = 0;
+	int i = 1;
+	do {
+	
+	kock1 = rand() % 6 + 1;
+	kock2 = rand() % 6 + 1;
+	kock3 = rand() % 6 + 1;
+	if (kock1 == kock2 && kock1 == kock3 && kock2 == kock3) {
+		uz++;
+	}
+	else
+		uz=0;
+	i++;
+	} while (uz!=2);
+	
+	std::cout << i;
+
+
+
+
+	return 0;
+}
