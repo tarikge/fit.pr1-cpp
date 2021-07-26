@@ -1,0 +1,47 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+#include<stdlib.h>
+#include <time.h>
+
+int fakt(int x,int y) {
+	x *= y;
+	if(y>1)
+	return fakt(x,y-1);
+
+	if (y == 1)
+		return x *= y;
+}
+int fibonacci(int &pr, int &dr, int tr) {
+	int t;
+	
+		tr = pr + dr;
+		t = tr;
+		pr = dr;
+		dr = tr;
+	
+	return t;
+
+}
+
+bool dalijeprost(int fibo) {
+	for (int i = 2; i < fibo; i++){
+		if (fibo % i)
+			return false;
+}
+return true;}
+int main() {
+	int pr = 1, dr = 1, tr = 0;
+	int x = 1;
+	int broj = 100;
+	long long int zbir = 0;
+	int t = 0;
+	for (int i = 0; i <= 5; i++) {
+		t = fibonacci(pr,dr,tr);
+		if (dalijeprost(t))
+			zbir += fakt(1, t);
+		
+	}
+	std::cout << zbir;
+	return 0;
+}
