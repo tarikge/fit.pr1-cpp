@@ -98,3 +98,93 @@ int main() {
 	std::cout << zbir;
 	return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+#include<stdlib.h>
+#include <time.h>
+
+unsigned long long int fakt(unsigned long long int x, unsigned long long int y) {
+	x *= y;
+	if (y > 1)
+		return fakt(x, y - 1);
+
+	if (y == 1)
+		return x *= y;
+}
+unsigned long long int fibonacci(unsigned long long int& pr, unsigned long long int& dr, unsigned long long int tr) {
+	unsigned long long int t;
+
+	tr = pr + dr;
+	t = tr;
+	pr = dr;
+	dr = tr;
+
+	return t;
+
+}
+
+bool dalijeprost(unsigned long long int fibo) {
+	for (int i = 2; i < fibo; i++) {
+		if (fibo % i==0)
+			return false;
+	}
+	return true;
+}
+
+bool isPrime(int n)
+{
+	// Corner cases
+	if (n <= 1)
+		return false;
+	if (n <= 3)
+		return true;
+
+	// This is checked so that we can skip
+	// middle five numbers in below loop
+	if (n % 2 == 0 || n % 3 == 0)
+		return false;
+
+	for (int i = 5; i * i <= n; i = i + 6)
+		if (n % i == 0 || n % (i + 2) == 0)
+			return false;
+
+	return true;
+}
+int main() {
+	unsigned long long int pr = 1, dr = 1, tr = 0;
+	unsigned long long int x = 1;
+	unsigned long long int broj = 100;
+	unsigned long long int zbir = 0;
+	unsigned long long int t = 0;
+	std::cout << dalijeprost(5) << std::endl;
+	for (int i = 0; i < 25; i++) {
+		t = fibonacci(pr, dr, tr);
+		//std::cout << t <<std::endl;
+		if (isPrime(t))
+			zbir += fakt(1, t);
+
+	}
+	std::cout << zbir;
+	return 0;
+}
