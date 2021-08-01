@@ -1,0 +1,30 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+#include<stdlib.h>
+#include <time.h>
+
+void umnozak(int prvi, int drugi, int vel, int* niz) {
+	int temp = 0;
+	for (int i = 0; i < vel; i++) {
+		*(niz + i) = prvi;
+		temp = drugi;
+		drugi = prvi;
+		prvi = prvi*temp;
+		
+		std::cout << *(niz + i);
+	}
+}
+
+int main() {
+	int vel;
+	int prvi = 1;
+	int drugi = 3;
+	do {
+		std::cin >> vel;
+	} while (vel < 2);
+
+	int *niz = new int[vel];
+	
+	umnozak(prvi, drugi, vel, niz);
+}
