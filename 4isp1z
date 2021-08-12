@@ -1,0 +1,153 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+#include<stdlib.h>
+#include <time.h>
+#include <limits>
+struct fudbaler
+{
+	int* godRodjenja;
+	int* brojIgraca;
+	int* golovi;
+	
+
+	fudbaler() {
+		godRodjenja = new int;
+		brojIgraca = new int;
+		golovi = new int;
+		
+		
+	}
+
+	~fudbaler() {
+		delete godRodjenja;
+		godRodjenja = nullptr;
+
+		delete brojIgraca;
+		brojIgraca = nullptr;
+
+		delete golovi;
+		golovi = nullptr;
+
+
+
+	}
+};
+
+void unos(fudbaler** matrica, int red, int kolona) {
+	for (int i = 0; i < red; i++)
+	{
+		std::cout << "unesite " << i + 1 << ". tim: "<<std::endl;
+		for (int j = 0; j < kolona; j++) {
+			std::cout << "unesite " << j + 1 << ". igraca(god,broj,golovi): " << std::endl;
+			*(*(matrica + i) + j)->godRodjenja = 1980 + rand() % ((2000 + 1) - 1980); // Generiše brojeve u rangu 1980 - 2000
+			*(*(matrica + i) + j)->brojIgraca = rand() % 30 + 1;
+			*(*(matrica + i) + j)->golovi = rand() % 5;
+			//std::cin >> *(*(matrica + i) + j)->godRodjenja >> *(*(matrica + i) + j)->brojIgraca >> *(*(matrica + i) + j)->golovi;
+		}
+	}
+	
+}
+void ispisi(fudbaler** matrica, int red, int kolona) {
+	for (int i = 0; i < red; i++)
+	{
+		std::cout << "tim " << i + 1 << ". : " << std::endl;
+		for (int j = 0; j < kolona; j++) {
+			
+			std::cout << "fudbaler: " << *(*(matrica + i) + j)->godRodjenja << " " << *(*(matrica + i) + j)->brojIgraca << " " << *(*(matrica + i) + j)->golovi << std::endl;
+		}
+	}
+
+}
+
+int prosjek(fudbaler** matrica, int red, int kolona, double &pros) {
+	int index;
+	int max;
+	for (int i = 0; i < red; i++) {
+		int brojgolovatim = 0;
+		for (int j = 0; j < kolona; j++) {
+			brojgolovatim += *(*(matrica + i) + j)->golovi;
+
+		}
+		if (i == 0){
+			max = brojgolovatim;
+			index = 0;
+			pros = double(brojgolovatim) / kolona;
+	}
+		if (brojgolovatim > max && i != 0) {
+			max = brojgolovatim;
+			index = i;
+			pros = double(brojgolovatim) / kolona;
+		}
+		
+	}
+	
+
+	return index;
+}
+
+int losiji(fudbaler** matrica, int red, int kolona) {
+	int index;
+	int min;
+	for (int i = 0; i < red; i++) {
+		int brojgolovatim = 0;
+		for (int j = 0; j < kolona; j++) {
+			brojgolovatim += *(*(matrica + i) + j)->golovi;
+
+		}
+		if (i == 0) {
+			min = brojgolovatim;
+			index = 0;
+			
+		}
+		if (brojgolovatim < min && i != 0) {
+			min = brojgolovatim;
+			index = i;
+			
+		}
+
+	}
+
+
+	return index;
+}
+void dealociraj(fudbaler** matrica, int red,int kolona) {
+	for (int i = 0; i < red; i++) {
+		delete[] * (matrica + i);
+		*(matrica + i) = nullptr;
+	}
+	delete[] matrica;
+	matrica = nullptr;
+}
+int main() {
+	int red,kolona;
+	std::cin >> red>>kolona;
+	double pros=0;
+
+	fudbaler** poknamat = new fudbaler*[red];
+	for (int i = 0; i < red; i++) {
+		*(poknamat + i) = new fudbaler[kolona];
+	}
+
+
+
+	unos(poknamat, red, kolona);
+	ispisi(poknamat, red, kolona);
+	std::cout<<"indedx je: "<<prosjek(poknamat, red, kolona,pros)<<"prosjek: "<<pros;
+	int najlosijitim=losiji(poknamat, red, kolona);
+	int max= *(*(poknamat + najlosijitim) + 0)->golovi;
+	int najbolji = 0;
+	for (int j = 0; j < kolona; j++) {
+		
+		if (*(*(poknamat + najlosijitim) + j)->golovi > max) {
+			max = *(*(poknamat + najlosijitim) + j)->golovi;
+			najbolji = j;
+		}
+	}
+	std::cout << "najbolji fudbaler je iz tima " << najlosijitim + 1 << " a on je na poziciji: " << najbolji + 1 << "(godista,broja,golova)= " << *(*(poknamat + najlosijitim) + najbolji)->godRodjenja << " " << *(*(poknamat + najlosijitim) + najbolji)->brojIgraca << " " << *(*(poknamat + najlosijitim) + najbolji)->golovi;
+
+	dealociraj(poknamat, red, kolona);
+
+	
+	return 0;
+}
