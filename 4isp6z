@@ -1,0 +1,120 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+#include<stdlib.h>
+#include <time.h>
+#include <limits>
+struct kosarkas
+{
+	char* ID;
+	char* imePrezime;
+	int* kosevi;
+
+
+	kosarkas() {
+		ID = new char[3];
+		imePrezime = new char[20];
+		kosevi = new int;
+
+
+	}
+
+	~kosarkas() {
+		delete[] ID;
+		ID = nullptr;
+
+		delete[] imePrezime;
+		imePrezime = nullptr;
+
+		delete kosevi;
+		kosevi = nullptr;
+
+
+
+	}
+};
+	void unos(kosarkas** poknamat, int red, int kolona) {
+		for (int i = 0; i < red; i++) {
+			std::cout << "Unesite kosarkase " << i + 1 << ". tima: " << std::endl;
+			
+			for (int j = 0; j < kolona; j++) {
+				std::cin.ignore();
+				std::cout << "Unesite ID " << j + 1 << ". kosarkasa: " << std::endl;
+				std::cin.getline((*(poknamat + i) + j)->ID, 3);
+				
+				std::cout << "Unesite ime i prezime " << j + 1 << ". kosarkasa: " << std::endl;
+				std::cin.getline((*(poknamat + i) + j)->imePrezime, 20);
+				
+				std::cout << "Unesite broj postignutih koseva " << j + 1 << ". kosarkasa: " << std::endl;
+				std::cin >> *(*(poknamat + i) + j)->kosevi;
+				
+			}
+
+		}
+	
+	}
+
+	void ispis(kosarkas** poknamat, int red, int kolona) {
+		for (int i = 0; i < red; i++) {
+			std::cout << "Kosarkasi " << i + 1 << ". tima su: " << std::endl;
+			for (int j = 0; j < kolona; j++) {
+				std::cout << "ID" << j + 1 << ". kosarkasa je: " << *(*(poknamat + i) + j)->ID << std::endl;
+				std::cout << "Ime i Prezime" << j + 1 << ". kosarkasa je: " << *(*(poknamat + i) + j)->imePrezime << std::endl;
+				std::cout << "Broj postignutih koseva " << j + 1 << ". kosarkasa je: " << *(*(poknamat + i) + j)->kosevi << std::endl;
+			}
+		}
+
+	}
+
+	int najuspklub(kosarkas** poknamat, int red, int kolona) {
+		int pomocni = 0;
+		int index = 0;
+		pomocni+=*(*(poknamat + 0) + 0)->kosevi;
+		for (int i = 0; i < red; i++) {
+			for (int j = 0; j < kolona; j++) {
+				if (*(*(poknamat + i) + j)->kosevi > pomocni) {
+					pomocni = *(*(poknamat + i) + j)->kosevi;
+					index = i+1;
+				}
+					
+			}
+		}
+		return index;
+	}
+
+	int najuspkos(kosarkas** poknamat, int kolona, int index) {
+		int brojkoseva = 0;
+		int igracsanajvise = 0;
+			for (int j = 0; j < kolona; j++) {
+				if (*(*(poknamat + index) + j)->kosevi > brojkoseva) {
+					brojkoseva = *(*(poknamat + index) + j)->kosevi;
+					igracsanajvise = j + 1;
+				}
+			}
+			return igracsanajvise;
+	}
+
+	int najlosiji(kosarkas** poknamat, int red, int kolona) {
+		int najlos;
+		for (int i = 0; i < red; i++) {
+			for (int j = 0; j < kolona; j++) {
+				najlos= *(*(poknamat + i) + j)->kosevi
+				if(*(*(poknamat+i)+j)->kosevi
+			}
+		}
+	}
+
+int main() {
+	int red, kolona;
+	std::cin >> red >> kolona;
+	
+	kosarkas** poknamat = new kosarkas * [red];
+	for (int i = 0; i < red; i++) {
+		*(poknamat + i) = new kosarkas[kolona];
+	}
+
+		unos(poknamat, red, kolona);
+		ispis(poknamat, red, kolona);
+		std::cout << std::endl << najuspklub(poknamat, red, kolona);
+	return 0;
+}
