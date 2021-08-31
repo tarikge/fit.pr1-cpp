@@ -1,0 +1,116 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+#include<stdlib.h>
+#include <time.h>
+#include <limits>
+
+struct uposlenik
+{
+	char* ID;
+	char* imePrezime;
+	float* plata;
+
+	uposlenik() {
+		ID = new char[5];
+		imePrezime = new char[20];
+		plata = new float;
+	}
+
+	~uposlenik() {
+		delete[] ID;
+		ID = nullptr;
+
+		delete[] imePrezime;
+		imePrezime = nullptr;
+
+		delete plata;
+		plata = nullptr;
+	}
+};
+
+void unos(uposlenik** poknamat, int red, int kolona) {
+	for (int i = 0; i < red; i++) {
+		
+		std::cout << "Unesite informacije za " << i << ". odjel: " << std::endl;
+		for (int j = 0; j < kolona; j++) {
+			
+			std::cout << "Unesite ID " << j << ". zaposlenika: " << std::endl;
+			std::cin.ignore(10000, '\n');
+			std::cin.getline((*(poknamat + i) + j)->ID, 5);
+			std::cout << "Unesite ime i prezime " << j << ". zaposlenika: " << std::endl;
+			std::cin.getline((*(poknamat + i) + j) -> imePrezime, 20);
+			
+			std::cout << "Unesite platu: " << j << ". zaposlenika: " << std::endl;
+			std::cin >> *(*(poknamat + i) + j)->plata;
+			
+		}
+	}
+}
+
+void ispis(uposlenik** poknamat, int red, int kolona) {
+	for (int i = 0; i < red; i++) {
+		std::cout << "Uposlenici " << i << ". odjela su: " << std::endl;
+		for (int j = 0; j < kolona; j++) {
+			std::cout << "ID" << j << ". uposlenika je: " << (*(poknamat + i) + j)->ID << std::endl;
+			std::cout << "Ime i Prezime " << j << ". uposlenika je: " << (*(poknamat + i) + j)->imePrezime << std::endl;
+			std::cout << "Plata " << j << ". uposlenika je: " << *(*(poknamat + i) + j)->plata << std::endl;
+
+		}
+	}
+}
+
+int prosjek(uposlenik** poknamat, int red, int kolona, float& najveciprosjek) {
+	int index;
+	float max;
+	for (int i = 0; i < red; i++) {
+		float najplata = 0.f;
+		for (int j = 0; j < kolona; j++) {
+			najplata += *(*(poknamat + i) + j)->plata;
+
+			if (i == 0) {
+				max = najplata;
+				najveciprosjek = najplata / kolona;
+				index = 0;
+
+
+			}
+			if (najplata > max && i != 0) {
+				max = najplata;
+				index = i;
+				najveciprosjek = najplata / kolona;
+			}
+			
+		}
+		
+
+	}
+	return index;
+}
+
+void dealociraj(uposlenik** poknamat, int red, int kolona) {
+	for (int i = 0; i < red; i++) {
+		delete[] * (poknamat + i);
+		*(poknamat + i) = nullptr;
+	}
+	delete[]poknamat;
+	poknamat = nullptr;
+}
+
+int main() {
+	int red, kolona;
+	float najvecaplata = 0.f;
+	std::cout << "Unesite broj redova i broj kolona tj. broj odjela i broj zaposlenih u odjelima" << std::endl;
+	std::cin >> red>>kolona;
+
+	uposlenik** poknamat = new uposlenik * [red];
+	for (int i = 0; i < red; i++) {
+		*(poknamat + i) = new uposlenik[kolona];
+	}
+
+	unos(poknamat, red, kolona);
+	ispis(poknamat, red, kolona);
+	std::cout<<"Odjel sa najvisom prosjecnom platom je: "<<prosjek(poknamat, red, kolona,najvecaplata)<<", a ta plata iznosi:  "<<najvecaplata;
+	dealociraj(poknamat, red, kolona);
+	return 0;
+}
