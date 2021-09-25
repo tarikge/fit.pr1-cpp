@@ -1,0 +1,88 @@
+var meni=document.getElementById("Izbornik");
+var otvoreno=false;
+otvoriZatvori=()=>
+{
+    if(otvoreno==false)
+    {
+        meni.style.display="block";
+        otvoreno=true;
+    }
+    else
+    {
+        meni.style.display="none";
+        otvoreno=false;
+    }
+}
+
+$.validator.addMethod(
+    "regex",
+    function(value, element, regexp) {
+        var check = false;
+        return this.optional(element) || regexp.test(value);
+    },
+    "Please check your input."
+);
+
+
+$("#forma").validate({
+    rules:
+    {
+        naslov:
+        {
+            required:true,
+            regex:/^[A-Z][A-z]{1,}\s[A-z]{1,}$/
+        },
+        telefon:
+        {
+            required:true,
+            regex:/^\+[1-9]{3}-[1-9]{2}-[1-9]{3}-[1-9]{4}$/
+        }
+    },
+    messages:
+    {
+        naslov:
+        {
+            required:"Ovo polje je obavezno ",
+            regex:"Potrebno je unijeti dvije rijeci od kojih prva pocinje velikim slovom"
+        },
+        telefon:
+        {
+            required:"Ovo polje je obavezno",
+            regex:"Potreban je format +111-11-111-1111 "
+        }
+    }
+})
+
+getAll=()=>
+{
+    const url='https://restapiexample.wrd.app.fit.ba/Ispit20210702/Get4Studenta';
+    fetch(url)
+    .then((odgovor)=>
+    {
+        if(odgovor.status!=200)
+        {
+            alert(odgovor.status);
+            return;
+        }
+        odgovor.json().then((podaci)=>
+        {
+            document.getElementById('klub').innerHTML='';
+            podaci.forEach((osoba)=>
+            {
+                const osobina=
+                '<div id="profesor">'
++`<img src="${osoba.slikaPutanja}"/>`
+      +'<div id="opis">'
+          +`<h3>${osoba.imePrezime}</h3>`
+          +`<p>${osoba.opis}</p>`
+          +`<button id="pisi">PiÅ¡i poruku</button>`
+      +'</div>'
+    +'</div>'
+
+    document.getElementById('klub').innerHTML+=osobina;
+            });
+        });
+    }).catch((error)=>
+ { alert(error);
+});
+}
